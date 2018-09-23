@@ -34,7 +34,34 @@ class LoginContainer extends Component {
        body: JSON.stringify(loginPostBody)
      };
 
-    fetch("http://localhost:4000/users/login", loginPostConfig)
+    fetch("https://calm-atoll-79836.herokuapp.com/users/login", loginPostConfig)
+      .then(response => response.json())
+      .then(json => {
+        localStorage.setItem("token", json.token)
+        this.props.loginUser(json._doc)
+        this.props.history.push("/artwork");
+      })
+      .catch(error => {
+        alert("Login failed.")
+      })
+  }
+
+  guestLogin = (event) => {
+    let loginPostBody = {
+      email: "guest@guest.com",
+      password: "123456789",
+    }
+
+    let loginPostConfig = {
+      Accept: "application/json",
+       method: "POST",
+       headers: {
+         "Content-type": "application/json",
+       },
+       body: JSON.stringify(loginPostBody)
+     };
+
+    fetch("https://calm-atoll-79836.herokuapp.com/users/login", loginPostConfig)
       .then(response => response.json())
       .then(json => {
         localStorage.setItem("token", json.token)
@@ -61,6 +88,8 @@ class LoginContainer extends Component {
             <button className="button button--login">Login</button>
           </div>
         </form>
+        <p onClick={this.guestLogin} className="guest-credentials">Don't have an account? Click here to login with guest credentials</p>
+
       </div>
     )
   }

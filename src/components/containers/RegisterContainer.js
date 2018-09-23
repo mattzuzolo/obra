@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 
 class RegisterContainer extends Component {
   constructor(props){
@@ -33,7 +35,7 @@ class RegisterContainer extends Component {
        body: JSON.stringify(newUserPostBody)
      };
 
-    fetch("http://localhost:4000/users", newUserPostConfig)
+    fetch("https://calm-atoll-79836.herokuapp.com/users", newUserPostConfig)
       .then(response => response.json())
       .then(this.props.history.push("/login"))
       .catch(error => {
@@ -56,6 +58,7 @@ class RegisterContainer extends Component {
             <button className="button button--login">Login</button>
           </div>
         </form>
+        <p className="guest-credentials">Don't feel like registering? Visit the <Link to="/login">Login page</Link> to enter with guest credentials.</p>
       </div>
     )
   }

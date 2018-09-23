@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import AnnotationListItem from "../AnnotationListItem"
 
 //This url provides access to annotations with full artwork objects
-const annotationWithArtworkUrl = "http://localhost:4000/annotations-artwork";
+const annotationWithArtworkUrl = "https://calm-atoll-79836.herokuapp.com/annotations-artwork";
 
 class AnnotationContainer extends Component {
     constructor(props){

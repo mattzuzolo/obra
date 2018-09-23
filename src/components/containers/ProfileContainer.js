@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import AnnotationListItem from "../AnnotationListItem";
 
-const myAnnotationsUrl = "http://localhost:4000/me/annotations"
+const myAnnotationsUrl = "https://calm-atoll-79836.herokuapp.com/me/annotations"
 
 class ProfileContainer extends Component {
   constructor(props){

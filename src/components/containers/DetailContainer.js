@@ -6,8 +6,8 @@ import AnnotationCard from "../AnnotationCard"
 import FullAnnotation from "../FullAnnotation"
 import EditForm from "../EditForm"
 
-const annotationUrl = "http://localhost:4000/annotations";
-const annotationUrlwithUserData = "http://localhost:4000/annotations-user";
+const annotationUrl = "https://calm-atoll-79836.herokuapp.com/annotations";
+const annotationUrlwithUserData = "https://calm-atoll-79836.herokuapp.com/annotations-user";
 
 class DetailContainer extends Component {
   constructor(props){
@@ -30,7 +30,7 @@ class DetailContainer extends Component {
   componentDidMount(){
 
     //fetches a specific artwork based on URL params
-    fetch(`http://localhost:4000/artwork/${this.props.paramsId}`)
+    fetch(`https://calm-atoll-79836.herokuapp.com/artwork/${this.props.paramsId}`)
       .then(response => response.json())
       .then(foundArtwork => this.props.selectArtwork(foundArtwork.artwork))
       .catch(console.error)
@@ -154,7 +154,7 @@ class DetailContainer extends Component {
   onAnnotationUpdateSubmit = (event, formState) => {
     event.preventDefault();
 
-    let updateUrl = `http://localhost:4000/annotations/${this.state.selectedAnnotation._id}`
+    let updateUrl = `https://calm-atoll-79836.herokuapp.com/annotations/${this.state.selectedAnnotation._id}`
     let updateSubmissionBody = {
         artwork: [this.state.selectedAnnotation.artwork],
         user: this.state.selectedAnnotation.user,

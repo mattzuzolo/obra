@@ -16,7 +16,7 @@ class IndexContainer extends Component {
     }
 
   componentDidMount(){
-    fetch("http://localhost:4000/artwork")
+    fetch("https://calm-atoll-79836.herokuapp.com/artwork")
       .then(response => response.json())
       .then(data => this.props.updateArtworkArray(data.artwork))
       .catch(console.error);

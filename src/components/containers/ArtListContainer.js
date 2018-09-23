@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import ArtCard from "../ArtCard"
 
-const artworkUrl = "http://localhost:4000/artwork"
+const artworkUrl = "https://calm-atoll-79836.herokuapp.com/artwork"
 
 class ArtListContainer extends Component {
 
@@ -35,7 +35,7 @@ class ArtListContainer extends Component {
   //Runs when user selects an artwork from the fetched list
   onClickArtwork = (event, selectedArtwork) => {
     //check to see if artwork exists in internal database
-    fetch(`http://localhost:4000/artwork/`)
+    fetch(`https://calm-atoll-79836.herokuapp.com/artwork/`)
       .then(response => response.json())
       .then(data => this.findArtworkById(data.artwork, selectedArtwork))
       .then(foundWork => {

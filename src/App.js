@@ -19,7 +19,7 @@ class App extends Component {
 
   //Check token to see identity of current user
   componentDidMount(){
-    fetch("http://localhost:4000/current", {
+    fetch("https://calm-atoll-79836.herokuapp.com/current", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
