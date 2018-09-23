@@ -88,7 +88,7 @@ class LoginContainer extends Component {
             <button className="button button--login">Login</button>
           </div>
         </form>
-        <p onClick={this.guestLogin} className="guest-credentials">Don't have an account? Click here to login with guest credentials</p>
+        <p onClick={this.guestLogin} className="guest-credentials login">Don't have an account? Click here to login with guest credentials</p>
 
       </div>
     )

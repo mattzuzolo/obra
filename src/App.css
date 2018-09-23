@@ -81,6 +81,15 @@ button:hover{
   width:100px;
 }
 
+.guest-credentials{
+  color: #6f65e9;
+  font-size: 2rem;
+}
+
+.login:hover{
+  text-decoration: underline;
+}
+
 /* ——————————————————————— */
 /* ——————————————————————— */
 /* DETAIL CONTAINER STYLING */
