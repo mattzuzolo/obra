@@ -25,8 +25,14 @@ class ProfileContainer extends Component {
     .then(response => response.json())
     .then(data => this.setState({myAnnotationArray: data.annotations}))
     .catch(error => {
-      this.props.history.push("/login");
-      alert("You must be logged in to view this page");
+      if(localStorage.getItem("token")){
+        this.props.history.push("/login");
+        alert("You must be logged in to view this page");
+      } else {
+        this.setState({myAnnotationArray: []})
+        alert("Sorry! Cannot access annotations right now")
+      }
+
     })
   }
 
