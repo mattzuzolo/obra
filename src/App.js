@@ -19,20 +19,23 @@ class App extends Component {
 
   //Check token to see identity of current user
   componentDidMount(){
-    fetch("https://calm-atoll-79836.herokuapp.com/current", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "x-auth": localStorage.getItem("token")
-      }
-    })
-      .then(response => response.json())
-      .then(foundUser => this.props.loginUser(foundUser.user))
-      .catch(error => {
-        //Remove token and send user to Login if token is not found
-        localStorage.removeItem("token");
-        this.props.history.push("/login");
+    let token = localStorage.getItem("token");
+    if(!!token){
+      fetch("https://calm-atoll-79836.herokuapp.com/current", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth": localStorage.getItem("token")
+        }
       })
+        .then(response => response.json())
+        .then(foundUser => this.props.loginUser(foundUser.user))
+        .catch(error => {
+          //Remove token and send user to Login if token is not found
+          localStorage.removeItem("token");
+          this.props.history.push("/login");
+        })
+    }
   }
 
   render() {
