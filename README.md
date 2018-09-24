@@ -11,15 +11,13 @@ Annotate paintings and other fine arts on the web with Obra.
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
 To launch front-end
 
 ```
 npm run start
 ```
 
-Obra's back-end is available here: (https://github.com/mattzuzolo/obra-back)
+Obra's RESTful API is available to view here: (https://github.com/mattzuzolo/obra-back)
 
 ## Author
 
