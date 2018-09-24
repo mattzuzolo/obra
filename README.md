@@ -26,3 +26,7 @@ Obra's RESTful API is available to view here: (https://github.com/mattzuzolo/obr
 ## More
 
 This project was bootstrapped with a React-Redux boilerplate available here: https://github.com/perpepajn25/react-redux-boilerplate
+
+ ## License 
+ 
+ This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
