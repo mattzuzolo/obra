@@ -22,3 +22,7 @@ Obra's RESTful API is available to view here: (https://github.com/mattzuzolo/obr
 ## Author
 
 * **Matt Zuzolo** - [mattzuzolo](https://mattzuzolo.github.io/)
+
+## More
+
+This project was bootstrapped with a React-Redux boilerplate available here: https://github.com/perpepajn25/react-redux-boilerplate
