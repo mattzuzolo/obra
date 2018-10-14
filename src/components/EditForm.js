@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-class FullAnnotation extends Component {
+
+class EditForm extends Component {
   constructor(props){
     super(props);
 
@@ -53,4 +55,11 @@ class FullAnnotation extends Component {
 
 }
 
-export default FullAnnotation;
+function mapStateToProps(state){
+  return {
+    selectedAnnotation: state.selectedAnnotation,
+  }
+}
+
+// export default EditForm;
+export default connect(mapStateToProps)(EditForm);

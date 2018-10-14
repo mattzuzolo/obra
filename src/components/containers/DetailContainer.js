@@ -21,7 +21,6 @@ class DetailContainer extends Component {
         yCoord: 0,
         displayingMarker: false,
         annotationArray: [],
-        // selectedAnnotation: {},
         displayingFullAnnotation: false,
         displayingEditForm: false,
     }
@@ -249,7 +248,6 @@ class DetailContainer extends Component {
       top: this.state.yCoord,
       left: this.state.xCoord,
     }
-    // console.log("LOCAL STATE ANNOTATION", this.state.selectedAnnotation);
     return(
       <div className="container div--detail-container">
 
