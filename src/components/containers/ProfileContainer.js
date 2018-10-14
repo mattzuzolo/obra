@@ -36,9 +36,12 @@ class ProfileContainer extends Component {
     })
   }
 
-  onClickAnnotation = (event, selectedArtwork) => {
-    this.props.routerProps.history.push(`/artwork/${selectedArtwork.id}`)
-    return this.props.selectArtwork(selectedArtwork);
+  onClickAnnotation = (event, selectedAnnotation, selectArtwork) => {
+    // console.log("selectedAnnotation", selectedAnnotation)
+    this.props.selectedAnnotation(selectedAnnotation);
+    this.props.selectArtwork(selectArtwork);
+    this.props.routerProps.history.push(`/artwork/${selectArtwork.id}`)
+    //return;
   }
 
   getNameFromEmail = (emailAddress) => {
@@ -50,6 +53,7 @@ class ProfileContainer extends Component {
   }
 
   render(){
+    console.log("REDUX PROPS", this.props)
     return(
       <div className="container div--profile-container">
         <h1>Welcome to Obra, {this.getNameFromEmail(this.props.loggedInUser.email)}.</h1>
@@ -79,7 +83,8 @@ class ProfileContainer extends Component {
 function mapStateToProps(state){
   return {
     loggedInUser: state.loggedInUser,
-    selectedArtwork: state.selectedArtwork,
+    selectArtwork: state.selectedArtwork,
+    selectedAnnotation: state.selectedAnnotation,
   }
 }
 
@@ -87,7 +92,10 @@ function mapDispatchToProps(dispatch){
   return {
     selectArtwork: (chosenArtwork) => {
       dispatch({type: "SELECT_ARTWORK", payload: chosenArtwork})
-    }
+    },
+    selectedAnnotation: (chosenAnnotation => {
+      dispatch({type: "SELECT_ANNOTATION", payload: chosenAnnotation})
+    }),
   }
 }
 
