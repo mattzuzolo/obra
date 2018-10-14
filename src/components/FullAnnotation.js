@@ -4,9 +4,6 @@ import { connect } from 'react-redux';
 
 class FullAnnotation extends Component {
   render(){
-    // console.log("this.props.selectedAnnotation.user[0]", this.props.selectedAnnotation.user[0])
-    // console.log("this.props.loggedInUser._id", this.props.loggedInUser._id)
-
     return(
       <div className="div div--full-annotation">
         <h1>{this.props.selectedAnnotation.headline}</h1>
@@ -31,6 +28,7 @@ class FullAnnotation extends Component {
 function mapStateToProps(state){
   return {
     loggedInUser: state.loggedInUser,
+    selectedAnnotation: state.selectedAnnotation,
   }
 }
 

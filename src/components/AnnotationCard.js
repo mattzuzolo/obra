@@ -28,7 +28,7 @@ class AnnotationCard extends Component {
 
   render(){
 
-    let borderStyle ={}
+    let borderStyle = {};
     if (this.props.selectedAnnotation._id === this.props.annotation._id){
       borderStyle = {
         "borderStyle": "solid",
@@ -57,6 +57,7 @@ class AnnotationCard extends Component {
 function mapStateToProps(state){
   return {
     loggedInUser: state.loggedInUser,
+    selectedAnnotation: state.selectedAnnotation,
   }
 }
 

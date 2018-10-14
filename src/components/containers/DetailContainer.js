@@ -21,7 +21,7 @@ class DetailContainer extends Component {
         yCoord: 0,
         displayingMarker: false,
         annotationArray: [],
-        selectedAnnotation: {},
+        // selectedAnnotation: {},
         displayingFullAnnotation: false,
         displayingEditForm: false,
     }
@@ -102,7 +102,7 @@ class DetailContainer extends Component {
         headline: "",
         sourceLink: "",
         content: "",
-      }) )
+      }))
       .catch(error => {
         this.props.routerProps.history.push("/login");
       })
@@ -137,6 +137,7 @@ class DetailContainer extends Component {
       displayingEditForm: false,
       displayingFullAnnotation: true,
     });
+    this.props.selectedAnnotation(individualAnnotation);
   }
 
   //Displays edit form when update button is clicked inside FullAnnotation component
@@ -154,11 +155,11 @@ class DetailContainer extends Component {
   onAnnotationUpdateSubmit = (event, formState) => {
     event.preventDefault();
 
-    let updateUrl = `https://calm-atoll-79836.herokuapp.com/annotations/${this.state.selectedAnnotation._id}`
+    let updateUrl = `https://calm-atoll-79836.herokuapp.com/annotations/${this.props.selectedAnnotation._id}`
     let updateSubmissionBody = {
-        artwork: [this.state.selectedAnnotation.artwork],
-        user: this.state.selectedAnnotation.user,
-        // _id: this.state.selectedAnnotation._id,
+        artwork: [this.props.selectedAnnotation.artwork],
+        user: this.props.selectedAnnotation.user,
+        // _id: this.props.selectedAnnotation._id,
         headline: formState.headline,
         content: formState.content,
         source: formState.sourceLink,
@@ -185,7 +186,7 @@ class DetailContainer extends Component {
           throw new Error("You can only update your own annotations.")
         }
       })
-      .then(() => this.updateSpecificAnnotationInAnnotationArray(this.state.selectedAnnotation, updateSubmissionBody))
+      .then(() => this.updateSpecificAnnotationInAnnotationArray(this.props.selectedAnnotation, updateSubmissionBody))
       .then(() => this.setState({displayingFullAnnotation: false}))
       .catch(error => {
         alert("You must be logged in to update your annotations")
@@ -243,13 +244,12 @@ class DetailContainer extends Component {
 
 
   render(){
-    // console.log("DETAIL STATE AT RENDER", this.state.annotationArray)
     //Style for annotation marker that updates on each render
     let annotationMarkerStyle = {
       top: this.state.yCoord,
       left: this.state.xCoord,
     }
-
+    // console.log("LOCAL STATE ANNOTATION", this.state.selectedAnnotation);
     return(
       <div className="container div--detail-container">
 
@@ -305,7 +305,6 @@ class DetailContainer extends Component {
                         <AnnotationCard
                           className="div--annotation-card"
                           annotation={individualAnnotation}
-                          selectedAnnotation={this.state.selectedAnnotation}
                           key={individualAnnotation._id}
                           id={individualAnnotation._id}
                           creator={individualAnnotation.user[0].email}
@@ -327,7 +326,7 @@ class DetailContainer extends Component {
         {/*Displays full annotation when clicked via state*/}
         { this.state.displayingFullAnnotation
                   ? <FullAnnotation
-                    selectedAnnotation={this.state.selectedAnnotation}
+                    selectedAnnotation={this.props.selectedAnnotation}
                     onAnnotationUpdateFormDisplay={this.onAnnotationUpdateFormDisplay}
                     onAnnotationCardDelete={this.onAnnotationCardDelete}
                     />
@@ -337,7 +336,7 @@ class DetailContainer extends Component {
         {/*Displays update/edit form when clicked via state*/}
         { this.state.displayingEditForm
                   ? <EditForm
-                    selectedAnnotation={this.state.selectedAnnotation}
+                    selectedAnnotation={this.props.selectedAnnotation}
                     xCoord={this.state.xCoord}
                     yCoord={this.state.yCoord}
                     onAnnotationUpdateFormDisplay={this.onAnnotationUpdateFormDisplay}
@@ -356,6 +355,7 @@ function mapStateToProps(state){
   return {
     selectedArtwork: state.selectedArtwork,
     loggedInUser: state.loggedInUser,
+    selectedAnnotation: state.selectedAnnotation,
   }
 }
 
@@ -364,9 +364,13 @@ function mapDispatchToProps(dispatch){
     updateArtworkArray: (artworkArray => {
       dispatch({type: "UPDATE_ARTWORK_ARRAY", payload: artworkArray})
     }),
+    selectedAnnotation: (chosenAnnotation => {
+      dispatch({type: "SELECT_ANNOTATION", payload: chosenAnnotation})
+    }),
     selectArtwork: (chosenArtwork) => {
       dispatch({type: "SELECT_ARTWORK", payload: chosenArtwork})
-    }
+    },
+
   }
 }
 

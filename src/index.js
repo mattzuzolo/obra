@@ -29,7 +29,7 @@ const addLoggingToDispatch = (store) => {
   }
 }
 
-// store.dispatch = addLoggingToDispatch(store);
+store.dispatch = addLoggingToDispatch(store);
 
 ReactDOM.render(
   <Provider store={store}>
