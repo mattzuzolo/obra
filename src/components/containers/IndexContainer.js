@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { updateArtworkArrayAction } from '../../reducers/actions';
+
 import ArtListContainer from "./ArtListContainer"
 
 const querystring = require('querystring')
-
-
 
 class IndexContainer extends Component {
     constructor(props){
@@ -71,11 +71,17 @@ function mapStateToProps(state){
   }
 }
 
+// function mapDispatchToProps(dispatch){
+//   return {
+//     updateArtworkArray: (dataArray) => {
+//       dispatch({type: "UPDATE_ARTWORK_ARRAY", payload: dataArray})
+//     },
+//   }
+// }
+
 function mapDispatchToProps(dispatch){
   return {
-    updateArtworkArray: (dataArray) => {
-      dispatch({type: "UPDATE_ARTWORK_ARRAY", payload: dataArray})
-    },
+    updateArtworkArray: (artworkArray) => dispatch(updateArtworkArrayAction(artworkArray)),
   }
 }
 
