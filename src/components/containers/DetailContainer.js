@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { selectArtworkAction, selectAnnotationAction, updateArtworkArrayAction } from '../../reducers/actions';
 
 import AnnotationCard from "../AnnotationCard"
 import FullAnnotation from "../FullAnnotation"
@@ -359,16 +359,9 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
   return {
-    updateArtworkArray: (artworkArray => {
-      dispatch({type: "UPDATE_ARTWORK_ARRAY", payload: artworkArray})
-    }),
-    selectedAnnotation: (chosenAnnotation => {
-      dispatch({type: "SELECT_ANNOTATION", payload: chosenAnnotation})
-    }),
-    selectArtwork: (chosenArtwork) => {
-      dispatch({type: "SELECT_ARTWORK", payload: chosenArtwork})
-    },
-
+    updateArtworkArray: (artworkArray) => dispatch(updateArtworkArrayAction(artworkArray)),
+    selectArtwork: (chosenArtwork) => dispatch(selectArtworkAction(chosenArtwork)),
+    selectAnnotation: (chosenAnnotation) => dispatch(selectAnnotationAction(chosenAnnotation)),
   }
 }
 

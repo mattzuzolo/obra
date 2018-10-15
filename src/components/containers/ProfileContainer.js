@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { selectArtworkAction, selectAnnotationAction } from '../../reducers/actions';
 
-
 import AnnotationListItem from "../AnnotationListItem";
 
 const myAnnotationsUrl = "https://calm-atoll-79836.herokuapp.com/me/annotations"
@@ -55,7 +54,6 @@ class ProfileContainer extends Component {
   }
 
   render(){
-    console.log("REDUX PROPS", this.props)
     return(
       <div className="container div--profile-container">
         <h1>Welcome to Obra, {this.getNameFromEmail(this.props.loggedInUser.email)}.</h1>

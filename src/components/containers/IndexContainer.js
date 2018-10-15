@@ -71,14 +71,6 @@ function mapStateToProps(state){
   }
 }
 
-// function mapDispatchToProps(dispatch){
-//   return {
-//     updateArtworkArray: (dataArray) => {
-//       dispatch({type: "UPDATE_ARTWORK_ARRAY", payload: dataArray})
-//     },
-//   }
-// }
-
 function mapDispatchToProps(dispatch){
   return {
     updateArtworkArray: (artworkArray) => dispatch(updateArtworkArrayAction(artworkArray)),
