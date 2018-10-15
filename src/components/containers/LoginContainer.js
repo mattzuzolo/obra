@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { loginUserAction } from '../../reducers/actions';
 
 class LoginContainer extends Component {
   constructor(props){
@@ -103,9 +104,7 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
   return {
-    loginUser: (user => {
-      dispatch({type: "LOGIN_USER", payload: user})
-    }),
+    loginUser: (user) => dispatch(loginUserAction(user)),
   }
 }
 

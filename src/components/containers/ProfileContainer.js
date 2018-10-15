@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { selectArtworkAction, selectAnnotationAction } from '../../reducers/actions';
+
 
 import AnnotationListItem from "../AnnotationListItem";
 
@@ -36,9 +38,9 @@ class ProfileContainer extends Component {
     })
   }
 
-  onClickAnnotation = (event, selectedAnnotation, selectArtwork) => {
-    // console.log("selectedAnnotation", selectedAnnotation)
-    this.props.selectedAnnotation(selectedAnnotation);
+  onClickAnnotation = (event, selectAnnotation, selectArtwork) => {
+    // console.log("selectAnnotation", selectAnnotation)
+    this.props.selectAnnotation(selectAnnotation);
     this.props.selectArtwork(selectArtwork);
     this.props.routerProps.history.push(`/artwork/${selectArtwork.id}`)
     //return;
@@ -84,20 +86,18 @@ function mapStateToProps(state){
   return {
     loggedInUser: state.loggedInUser,
     selectArtwork: state.selectedArtwork,
-    selectedAnnotation: state.selectedAnnotation,
+    selectAnnotation: state.selectAnnotation,
   }
 }
 
 function mapDispatchToProps(dispatch){
   return {
-    selectArtwork: (chosenArtwork) => {
-      dispatch({type: "SELECT_ARTWORK", payload: chosenArtwork})
-    },
-    selectedAnnotation: (chosenAnnotation => {
-      dispatch({type: "SELECT_ANNOTATION", payload: chosenAnnotation})
-    }),
+    selectArtwork: (chosenArtwork) => dispatch(selectArtworkAction(chosenArtwork)),
+    selectAnnotation: (chosenAnnotation) => dispatch(selectAnnotationAction(chosenAnnotation)),
   }
 }
+
+
 
 
 
