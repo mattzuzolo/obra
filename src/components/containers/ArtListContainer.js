@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { updateArtworkArrayAction, selectArtworkAction } from '../../reducers/actions';
 
 import ArtCard from "../ArtCard"
 
@@ -93,15 +94,9 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
   return {
-    updateArtworkArray: (artworkArray => {
-      dispatch({type: "UPDATE_ARTWORK_ARRAY", payload: artworkArray})
-    }),
-    selectArtwork: (chosenArtwork) => {
-      dispatch({type: "SELECT_ARTWORK", payload: chosenArtwork})
-    }
+    updateArtworkArray: (artworkArray) => dispatch(updateArtworkArrayAction(artworkArray)),
+    selectArtwork: (chosenArtwork) => dispatch(selectArtworkAction(chosenArtwork)),
   }
 }
-
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArtListContainer);
