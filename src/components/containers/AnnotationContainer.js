@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { selectArtworkAction, selectAnnotationAction } from '../../reducers/actions';
 
 import AnnotationListItem from "../AnnotationListItem"
 
@@ -27,9 +28,9 @@ class AnnotationContainer extends Component {
     this.setState({ activeQuery: event.target.value })
   }
 
-  onClickAnnotation = (event, selectedAnnotation, selectArtwork) => {
-    console.log("SELECTED artwork", selectedAnnotation)
-    this.props.selectedAnnotation(selectedAnnotation)
+  onClickAnnotation = (event, selectAnnotation, selectArtwork) => {
+    console.log("SELECTED artwork", selectAnnotation)
+    this.props.selectAnnotation(selectAnnotation)
     this.props.selectArtwork(selectArtwork)
     this.props.routerProps.history.push(`/artwork/${selectArtwork.id}`)
     // return ;
@@ -50,7 +51,6 @@ class AnnotationContainer extends Component {
   }
 }
 
-//comment
 function mapStateToProps(state){
   return {
     selectedArtwork: state.selectedArtwork,
@@ -60,15 +60,9 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
   return {
-    selectArtwork: (chosenArtwork) => {
-      dispatch({type: "SELECT_ARTWORK", payload: chosenArtwork})
-    },
-    selectedAnnotation: (chosenAnnotation => {
-      dispatch({type: "SELECT_ANNOTATION", payload: chosenAnnotation})
-    }),
+    selectArtwork: (chosenArtwork) => dispatch(selectArtworkAction(chosenArtwork)),
+    selectAnnotation: (chosenAnnotation) => dispatch(selectAnnotationAction(chosenAnnotation)),
   }
 }
-
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(AnnotationContainer);
