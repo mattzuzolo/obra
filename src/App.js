@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { loginUserAction } from './reducers/actions';
 
 import './App.css';
 
@@ -76,9 +77,7 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
   return {
-    loginUser: (user => {
-      dispatch({type: "LOGIN_USER", payload: user})
-    }),
+    loginUser: (user) => dispatch(loginUserAction(user)),
   }
 }
 
