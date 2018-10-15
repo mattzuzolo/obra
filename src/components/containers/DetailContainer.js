@@ -136,7 +136,7 @@ class DetailContainer extends Component {
       displayingEditForm: false,
       displayingFullAnnotation: true,
     });
-    this.props.selectedAnnotation(individualAnnotation);
+    this.props.selectAnnotation(individualAnnotation);
   }
 
   //Displays edit form when update button is clicked inside FullAnnotation component
