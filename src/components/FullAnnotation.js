@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 class FullAnnotation extends Component {
   render(){
+    console.log("this.props.selectedAnnotation", this.props.selectedAnnotation);
     return(
       <div className="div div--full-annotation">
         <h1>{this.props.selectedAnnotation.headline}</h1>

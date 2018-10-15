@@ -42,6 +42,10 @@ class DetailContainer extends Component {
       // .then(filteredData => console.log("DATA AFTER FILTERING", filteredData))
       .then(filteredData => this.setState({annotationArray: filteredData}))
       .catch(console.error)
+
+    if(this.props.selectedAnnotation){
+      this.onAnnotationCardClick(null, this.props.selectedAnnotation);
+    }
   }
 
   filterAnnotationsByArtwork = (annotationData) => {
@@ -243,6 +247,7 @@ class DetailContainer extends Component {
 
 
   render(){
+    console.log("Selected annotation", this.props.selectedAnnotation);
     //Style for annotation marker that updates on each render
     let annotationMarkerStyle = {
       top: this.state.yCoord,
@@ -324,7 +329,6 @@ class DetailContainer extends Component {
         {/*Displays full annotation when clicked via state*/}
         { this.state.displayingFullAnnotation
                   ? <FullAnnotation
-                    selectedAnnotation={this.props.selectedAnnotation}
                     onAnnotationUpdateFormDisplay={this.onAnnotationUpdateFormDisplay}
                     onAnnotationCardDelete={this.onAnnotationCardDelete}
                     />
