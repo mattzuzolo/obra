@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { updateArtworkArrayAction } from '../../reducers/actions';
 
 const querystring = require('querystring')
-
 
 class HomeContainer extends Component {
     constructor(props){
@@ -63,9 +63,7 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
   return {
-    updateArtworkArray: (dataArray) => {
-      dispatch({type: "UPDATE_ARTWORK_ARRAY", payload: dataArray})
-    },
+    updateArtworkArray: (artworkArray) => dispatch(updateArtworkArrayAction(artworkArray)),
   }
 }
 
