@@ -17,19 +17,19 @@ import reducer from './reducers/reducer'
 // const store = configureStore()
 let store = createStore(reducer);
 
-// const addLoggingToDispatch = (store) => {
-//   const rawDispatch = store.dispatch;
-//   return (action) => {
-//     console.group("DISPATCH");
-//     console.log('%c state before dispatch', 'color: red', store.getState());
-//     const returnValue = rawDispatch(action);
-//     console.log('%c state after dispatch', 'color: blue', store.getState());
-//     console.groupEnd();
-//     return returnValue;
-//   }
-// }
+const addLoggingToDispatch = (store) => {
+  const rawDispatch = store.dispatch;
+  return (action) => {
+    console.group("DISPATCH");
+    console.log('%c state before dispatch', 'color: red', store.getState());
+    const returnValue = rawDispatch(action);
+    console.log('%c state after dispatch', 'color: blue', store.getState());
+    console.groupEnd();
+    return returnValue;
+  }
+}
 
-store.dispatch = addLoggingToDispatch(store);
+// store.dispatch = addLoggingToDispatch(store);
 
 ReactDOM.render(
   <Provider store={store}>
