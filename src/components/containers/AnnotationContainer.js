@@ -29,7 +29,6 @@ class AnnotationContainer extends Component {
   }
 
   onClickAnnotation = (event, selectAnnotation, selectArtwork) => {
-    console.log("SELECTED artwork", selectAnnotation)
     this.props.selectAnnotation(selectAnnotation)
     this.props.selectArtwork(selectArtwork)
     this.props.routerProps.history.push(`/artwork/${selectArtwork.id}`)
