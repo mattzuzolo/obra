@@ -247,7 +247,6 @@ class DetailContainer extends Component {
 
 
   render(){
-    console.log("Selected annotation", this.props.selectedAnnotation);
     //Style for annotation marker that updates on each render
     let annotationMarkerStyle = {
       top: this.state.yCoord,
