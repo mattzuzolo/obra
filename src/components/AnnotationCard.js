@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-
 class AnnotationCard extends Component {
 
   truncateString = (string) => {
@@ -52,7 +51,6 @@ class AnnotationCard extends Component {
     );
   }
 }
-
 
 function mapStateToProps(state){
   return {

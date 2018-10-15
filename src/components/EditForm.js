@@ -61,5 +61,4 @@ function mapStateToProps(state){
   }
 }
 
-// export default EditForm;
 export default connect(mapStateToProps)(EditForm);

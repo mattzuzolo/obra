@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-
+import { loginUserAction } from '../reducers/actions';
 
 class NavBar extends Component {
 
@@ -46,9 +46,7 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
   return {
-    loginUser: (user => {
-      dispatch({type: "LOGIN_USER", payload: user})
-    }),
+    loginUser: (user) => dispatch(loginUserAction(user)),
   }
 }
 
