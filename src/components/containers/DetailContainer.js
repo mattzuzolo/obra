@@ -43,7 +43,7 @@ class DetailContainer extends Component {
       .then(filteredData => this.setState({annotationArray: filteredData}))
       .catch(console.error)
 
-    if(this.props.selectedAnnotation){
+    if(!!this.props.selectedAnnotation.content){
       this.onAnnotationCardClick(null, this.props.selectedAnnotation);
     }
   }
@@ -252,6 +252,7 @@ class DetailContainer extends Component {
       top: this.state.yCoord,
       left: this.state.xCoord,
     }
+    console.log("selectedAnnotation", !!this.props.selectedAnnotation.content)
     return(
       <div className="container div--detail-container">
 
@@ -326,7 +327,7 @@ class DetailContainer extends Component {
 
         <div className="div--full-annotation-container">
         {/*Displays full annotation when clicked via state*/}
-        { this.state.displayingFullAnnotation
+        { (this.state.displayingFullAnnotation)
                   ? <FullAnnotation
                     onAnnotationUpdateFormDisplay={this.onAnnotationUpdateFormDisplay}
                     onAnnotationCardDelete={this.onAnnotationCardDelete}
@@ -335,7 +336,7 @@ class DetailContainer extends Component {
         }
 
         {/*Displays update/edit form when clicked via state*/}
-        { this.state.displayingEditForm
+        { (this.state.displayingEditForm && this.props.selectedAnnotation.content)
                   ? <EditForm
                     selectedAnnotation={this.props.selectedAnnotation}
                     xCoord={this.state.xCoord}

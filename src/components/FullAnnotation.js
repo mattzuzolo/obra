@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 
 class FullAnnotation extends Component {
+
   render(){
     return(
       <div className="div div--full-annotation">
