@@ -252,7 +252,6 @@ class DetailContainer extends Component {
       top: this.state.yCoord,
       left: this.state.xCoord,
     }
-    console.log("selectedAnnotation", !!this.props.selectedAnnotation.content)
     return(
       <div className="container div--detail-container">
 
