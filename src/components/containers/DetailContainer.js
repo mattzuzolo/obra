@@ -298,8 +298,7 @@ class DetailContainer extends Component {
       top: this.recreateYCoord(),
       left: this.recreateXCoord(),
     }
-    console.log("RENDER BOUND:", this.state.bound);
-    console.log("annotationMarkerStyle:", annotationMarkerStyle);
+    console.log("selectedAnnotation", !!this.props.selectedAnnotation.content)
     return(
       <div className="container div--detail-container">
 
