@@ -23,7 +23,6 @@ class DetailContainer extends Component {
         annotationArray: [],
         displayingFullAnnotation: false,
         displayingEditForm: false,
-        bound: 0,
     }
   }
 
@@ -47,13 +46,6 @@ class DetailContainer extends Component {
     if(!!this.props.selectedAnnotation.content){
       this.onAnnotationCardClick(null, this.props.selectedAnnotation);
     }
-
-    // console.log("this.refs.artwork", this.refs.artwork);
-
-    this.setState({
-      bound: this.refs.artwork.getBoundingClientRect(),
-    })
-
   }
 
   filterAnnotationsByArtwork = (annotationData) => {
@@ -74,26 +66,8 @@ class DetailContainer extends Component {
 
   //Updates state with the coordinates of most recent click for annotation coordinates
   onArtworkClick = (event) => {
-    let bound = event.target.getBoundingClientRect();
-    // let xCoord = event.clientX - 50;
-    // let yCoord = event.clientY - 50;
-    //save relative position as ratio
-    let xCoord = event.clientX / bound.right;
-    let yCoord = event.clientY / bound.bottom;
-
-
-    console.log("BOUND:", bound);
-
-    console.log("event.clientX:", event.clientX)
-    console.log("event.clientY:", event.clientY)
-
-    console.log("width ratio:", event.clientX / bound.right);
-    console.log("height ratio:", event.clientY / bound.bottom);
-
-    console.log("---")
-
-
-
+    let xCoord = event.clientX - 50;
+    let yCoord = event.clientY - 50;
 
     this.setState({
       xCoord: xCoord,
@@ -102,22 +76,6 @@ class DetailContainer extends Component {
       displayingMarker: true,
     })
   }
-
-  recreateXCoord = () =>{
-    console.log("----------")
-    console.log("Recreate XCoord:")
-    console.log("this.state.xCoord:", this.state.xCoord)
-    console.log("this.state.bound.right:", this.state.bound.right)
-    console.log("Click location:", (this.state.xCoord * this.state.bound.right))
-    console.log("----------")
-
-    return (this.state.xCoord * this.state.bound.right);
-  }
-
-  recreateYCoord = () =>{
-    return (this.state.yCoord * this.state.bound.bottom);
-  }
-
 
 
   onAnnotationSubmit = (event) => {
@@ -290,15 +248,11 @@ class DetailContainer extends Component {
 
   render(){
     //Style for annotation marker that updates on each render
-    // let annotationMarkerStyle = {
-    //   top: this.state.yCoord,
-    //   left: this.state.xCoord,
-    // }
     let annotationMarkerStyle = {
-      top: this.recreateYCoord(),
-      left: this.recreateXCoord(),
+      top: this.state.yCoord,
+      left: this.state.xCoord,
     }
-    console.log("selectedAnnotation", !!this.props.selectedAnnotation.content)
+
     return(
       <div className="container div--detail-container">
 
@@ -310,7 +264,7 @@ class DetailContainer extends Component {
                         ? <div id="annotation-marker" style={annotationMarkerStyle} ></div>
                         : null
               }
-              <img id="detail-image" ref="artwork" alt={this.props.selectedArtwork.title} onClick={this.onArtworkClick} src={this.props.selectedArtwork.primaryimageurl}></img>
+              <img id="detail-image" alt={this.props.selectedArtwork.title} onClick={this.onArtworkClick} src={this.props.selectedArtwork.primaryimageurl}></img>
 
               <div className="div--artwork-info">
                 <h1>{this.props.selectedArtwork.title}</h1>
